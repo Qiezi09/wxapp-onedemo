@@ -1,0 +1,37 @@
+<view class='container'>
+ <movable-area style="top:{{imgStyles.backgroudTop}}px;left:{{imgStyles.backgroudLeft}}px;filter: blur(21px);height:0px;width:0px;">
+    <image  style="width:{{imageInfo.backgroudWidth}}px;height:{{imageInfo.backgroudHeight}}px" src='{{imageInfo.imgUrl}}'></image>
+  </movable-area>
+   <swiper class="container" indicator-dots="{{swiperInfo.indicatorDots}}" indicator-dots="{{swiperInfo.indicatordots}}" autoplay="{{swiperInfo.autoplay}}" interval="{{swiperInfo.interval}}" duration="{{swiperInfo.duration}}" style="height:100%;width:100%;margin:auto auto;display:block;">
+    <block wx:for="{{contentList}}" wx:key="index">
+    <swiper-item>
+      <view class='top-box' style="height:{{imageInfo.containerHeight}}px;width:{{imageInfo.containerWidth}}px;">
+      <movable-area style="top:{{imgStyles.top}}px;left:{{imgStyles.left}}px;height:0px;width:0px;">
+        <image style="width:{{imageInfo.width}}px;height:{{imageInfo.height}}px" src='{{item.imgUrl}}'></image>
+      </movable-area>
+      
+      <view wx:if="{{showInfo==false}}" bindtap='showInfoDetail' style="position:relative;height:50px;background:#fff;opacity:0.8;top:{{imageInfo.containerHeight-60}}px;padding:7px;">
+        <view>{{item.idStr}}</view>
+        <view style="position:absolute;top:17px;height:7px;width:70px;background:yellow;opacity:0.3;"></view>
+        <view style="font-size:12px;margin-top:7px;">{{item.title}}</view>
+      </view>
+      <view  wx:if="{{showInfo==true}}"  bindtap='showInfo'  >
+        <view style="padding:7px;position:relative;height:65px;width:100%;background:#fff;opacity:0.9;top:0px;">
+            <view style="margin-top:5px;">
+              {{item.idStr}}
+            </view>
+            <view style="font-size:11px;margin-top:5px;">{{item.imgAutor}}</view>
+          </view>
+          <view style="padding:3px;position:relative;opacity:0.9;height:{{imageInfo.containerHeight-65}}px;background:#ffe;">
+              <view style="text-align: center;font-size:24px;margin-top:5px;">{{item.day}}</view>
+              <view  style="text-align: center;font-size:11px;margin-top:5px;">{{item.dateYM}}</view>
+              <view  style="text-align:left;font-size:14px;margin-top:10px;padding:3px;line-height:2;"><text>{{item.content}}</text></view>
+              <view style="text-align:right;font-size:11px;padding:5px;">{{item.autor}}</view>
+            </view>
+        </view>
+      </view>
+    </swiper-item>
+    </block>
+   </swiper>
+  
+</view>
